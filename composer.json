@@ -1,5 +1,13 @@
 {
     "require": {
         "prewk/xml-string-streamer": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "application/",
+            "Controller\\": "application/controller",
+            "Library\\": "application/library",
+            "Models\\": "application/models"
+        }
     }
 }

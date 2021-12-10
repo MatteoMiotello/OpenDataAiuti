@@ -1,6 +1,6 @@
 <?php
 
-namespace application\library\database;
+namespace Library\Database;
 
 class Db {
     /**

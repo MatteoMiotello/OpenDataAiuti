@@ -1,8 +1,8 @@
 <?php
 
-namespace application\models;
+namespace Models;
 
-use application\library\database\Db;
+use Library\Database\Db;
 
 class Aiuto {
     private $Id;

@@ -1,6 +1,6 @@
 <?php
-namespace application\modelConverter;
-use application\models\Aiuto;
+namespace Library\ModelConverter;
+use Models\Aiuto;
 
 class AiutoConverter {
     public function convert( $node ) {

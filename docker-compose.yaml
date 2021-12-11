@@ -1,0 +1,44 @@
+services:
+  nginx:
+    build: docker/nginx/
+    container_name: nginx-container
+    ports:
+      - 8080:8080
+    links:
+      - php
+    volumes_from:
+      - app-data
+
+  php:
+    build: docker/php/
+    container_name: php-container
+    expose:
+      - 9000
+    links:
+      - mysql
+    volumes_from:
+      - app-data
+
+  app-data:
+    image: php:7.3-fpm
+    container_name: app-data-container
+    volumes:
+      - ./:/var/www/html/
+    command: "true"
+
+  mysql:
+    build:
+      docker/mysql
+    container_name: mysql-container
+    ports:
+    - 2300:3306
+    volumes_from:
+      - mysql-data
+
+  mysql-data:
+    image: mariadb
+    container_name: mysql-data-container
+    volumes:
+      - /var/lib/mysql
+      - ./docker/mysql/db.sql:/docker-entrypoint-initdb.d/start.sql
+    command: "true"

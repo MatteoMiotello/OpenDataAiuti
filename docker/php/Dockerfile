@@ -9,4 +9,4 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community/" >>         /etc/ap
     php7-gd
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-install zip
-CMD ["php", "../../composer.phar install"]
+

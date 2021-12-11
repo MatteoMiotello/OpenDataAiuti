@@ -10,7 +10,7 @@ use Symfony\Component\Dotenv\Dotenv;
 class Application {
     private function loadEnv() {
         $dotenv = new Dotenv();
-        $dotenv->load(__DIR__ . '/../evirorment/.env');
+        $dotenv->load(__DIR__ . '/../envirorment/.env');
     }
 
 

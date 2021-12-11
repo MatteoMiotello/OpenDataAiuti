@@ -8,6 +8,8 @@ class Db {
      *
      */
     public static function getPDO() {
-        return new PDO( 'mysql:host=localhost;dbname=open_data', 'user', 'password' );
+        $string = sprintf( 'mysql:host=%s;dbname=%s', getenv( 'DB_HOST' ), getenv( 'DB_NAME' ) );
+
+        return new PDO( $string , getenv('DB_USER' ), getenv('db_password' ) );
     }
 }

@@ -1,13 +1,15 @@
 {
     "require": {
-        "prewk/xml-string-streamer": "^1.2"
+        "prewk/xml-string-streamer": "^1.2",
+        "twig/twig": "^3.0",
+        "symfony/dotenv": "^5.4"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "application/",
-            "Controller\\": "application/controller",
-            "Library\\": "application/library",
-            "Models\\": "application/models"
+            "Controller\\": "application/Controller",
+            "Library\\": "application/Library",
+            "Models\\": "application/Models"
         }
     }
 }

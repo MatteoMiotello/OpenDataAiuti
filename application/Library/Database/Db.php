@@ -2,6 +2,8 @@
 
 namespace Library\Database;
 
+use PDO;
+
 class Db {
     /**
      * @return PDO

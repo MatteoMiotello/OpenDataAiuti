@@ -3,15 +3,23 @@
 namespace Library\Database;
 
 use PDO;
+use Symfony\Component\Dotenv\Dotenv;
 
 class Db {
+    private static $Instance = null;
+
     /**
      * @return PDO
      *
      */
     public static function getPDO() {
-        $string = sprintf( 'mysql:host=%s;dbname=%s', getenv( 'DB_HOST' ), getenv( 'DB_NAME' ) );
+        if ( is_null( self::$Instance  )) {
 
-        return new PDO( $string , getenv('DB_USER' ), getenv('db_password' ) );
+            $string = sprintf( 'mysql:host=%s;dbname=%s', $_ENV[ 'DB_HOST' ], $_ENV['DB_NAME'] );
+
+            self::$Instance = new PDO( $string , $_ENV['DB_USER'], $_ENV['DB_PASSWORD'] );
+        }
+
+        return self::$Instance;
     }
 }

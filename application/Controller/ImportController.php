@@ -7,6 +7,7 @@ namespace Controller;
 use Application\Library\TemplateHandler\TemplateHandler;
 
 use Application\Models\Aiuto;
+use Library\Database\Db;
 use Library\ModelConverter\AiutoConverter;
 use Prewk\XmlStringStreamer;
 

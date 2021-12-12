@@ -7,16 +7,20 @@ use Controller\HomeController;
 use Controller\NotFoundController;
 use Symfony\Component\Dotenv\Dotenv;
 
+
 class Application {
-    private function loadEnv() {
+
+
+    /**
+     * Application constructor.
+     */
+    public function __construct() {
         $dotenv = new Dotenv();
-        $dotenv->load(__DIR__ . '/../envirorment/.env');
+        $dotenv->load(__DIR__ . '/../environment/.env');
     }
 
 
     public function main() {
-        $this->loadEnv();
-
         $parameters = rtrim( $_SERVER['REQUEST_URI'], "\\/" );
         $array = explode( '/', $parameters );
 

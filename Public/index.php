@@ -9,5 +9,4 @@ error_reporting(E_ALL);
 require __DIR__ . '/../vendor/autoload.php';
 require_once '../application/Library/Application.php';
 
-
 ( new Application() )->main();

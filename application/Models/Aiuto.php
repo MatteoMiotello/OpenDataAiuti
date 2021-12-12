@@ -2,9 +2,10 @@
 
 namespace Models;
 
+use Application\Models\ModelBase;
 use Library\Database\Db;
 
-class Aiuto {
+class Aiuto extends ModelBase {
     private $Id;
     private $Car;
     private $TitoloMisura;
@@ -478,8 +479,6 @@ class Aiuto {
     }
 
     public function save() {
-        $pdo = Db::getPDO();
-
         $fields  = implode( ', ', array_keys( $this->getSchema() ) );
         $binds = '';
 
@@ -494,7 +493,8 @@ class Aiuto {
 
         $queryInsert = sprintf( 'INSERT INTO `AIUTO` ( %s ) VALUES ( %s )', $fields, $binds );
 
-        $query = $pdo->prepare( $queryInsert );
+        $query = $this->Db->prepare( $queryInsert );
+
         $query->execute( $values );
     }
 }

@@ -1,0 +1,18 @@
+{% extends 'common.twig' %}
+
+{% block content %}
+    <section class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+            <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Risultati</h1>
+                <p class="mb-8 leading-relaxed">Sono stati trovati {{ count }} risultati corrispondenti a CF
+                    {{ cf }}. Premere il bottone sottostante per scaricarli in formato excel.</p>
+                <form action="/results/download" method="post">
+                    <input type="hidden" value="{{ cf }}" id="cf" name="cf">
+                <button type ="submit" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Scarica</button>
+                </form>
+                <p class="text-sm mt-2 text-gray-500 mb-8 w-full">{{ cf }}.xlsx</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

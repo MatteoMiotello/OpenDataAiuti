@@ -7,28 +7,19 @@ use Library\Database\Db;
 
 class Aiuto extends ModelBase {
     private $Id;
-    private $Car;
     private $TitoloMisura;
-    private $DesTipoMisura;
-    private $CodCeMisura;
-    private $BaseGiuridicaNazionale;
-    private $IdentificativoUfficio;
     private $SoggettoConcedente;
     private $Cor;
     private $TitoloProgetto;
-    private $DescrizioneProgetto;
-    private $LinkTrasparenzaNazionale;
     private $DataConcessione;
     private $Cup;
     private $AttoConcessione;
     private $DenominazioneBeneficiario;
     private $CodiceFiscaleBeneficiario;
-    private $DesTipoBeneficiario;
-    private $RegioneBeneficiario;
+    private $IdComponenteAiuto;
     private $CodProcedimento;
     private $DesProcedimento;
     private $DesRegolamento;
-    private $DesObiettivo;
     private $DesStrumento;
     private $ElementoDiAiuto;
     private $ImportoNominale;
@@ -52,22 +43,6 @@ class Aiuto extends ModelBase {
     /**
      * @return mixed
      */
-    public function getCar() {
-        return $this->Car;
-    }
-
-    /**
-     * @param mixed $Car
-     * @return Aiuto
-     */
-    public function setCar($Car) {
-        $this->Car = $Car;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getTitoloMisura() {
         return $this->TitoloMisura;
     }
@@ -78,70 +53,6 @@ class Aiuto extends ModelBase {
      */
     public function setTitoloMisura($TitoloMisura) {
         $this->TitoloMisura = $TitoloMisura;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDesTipoMisura() {
-        return $this->DesTipoMisura;
-    }
-
-    /**
-     * @param mixed $DesTipoMisura
-     * @return Aiuto
-     */
-    public function setDesTipoMisura($DesTipoMisura) {
-        $this->DesTipoMisura = $DesTipoMisura;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCodCeMisura() {
-        return $this->CodCeMisura;
-    }
-
-    /**
-     * @param mixed $CodCeMisura
-     * @return Aiuto
-     */
-    public function setCodCeMisura($CodCeMisura) {
-        $this->CodCeMisura = $CodCeMisura;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBaseGiuridicaNazionale() {
-        return $this->BaseGiuridicaNazionale;
-    }
-
-    /**
-     * @param mixed $BaseGiuridicaNazionale
-     * @return Aiuto
-     */
-    public function setBaseGiuridicaNazionale($BaseGiuridicaNazionale) {
-        $this->BaseGiuridicaNazionale = $BaseGiuridicaNazionale;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdentificativoUfficio() {
-        return $this->IdentificativoUfficio;
-    }
-
-    /**
-     * @param mixed $IdentificativoUfficio
-     * @return Aiuto
-     */
-    public function setIdentificativoUfficio($IdentificativoUfficio) {
-        $this->IdentificativoUfficio = $IdentificativoUfficio;
         return $this;
     }
 
@@ -190,38 +101,6 @@ class Aiuto extends ModelBase {
      */
     public function setTitoloProgetto($TitoloProgetto) {
         $this->TitoloProgetto = $TitoloProgetto;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescrizioneProgetto() {
-        return $this->DescrizioneProgetto;
-    }
-
-    /**
-     * @param mixed $DescrizioneProgetto
-     * @return Aiuto
-     */
-    public function setDescrizioneProgetto($DescrizioneProgetto) {
-        $this->DescrizioneProgetto = $DescrizioneProgetto;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLinkTrasparenzaNazionale() {
-        return $this->LinkTrasparenzaNazionale;
-    }
-
-    /**
-     * @param mixed $LinkTrasparenzaNazionale
-     * @return Aiuto
-     */
-    public function setLinkTrasparenzaNazionale($LinkTrasparenzaNazionale) {
-        $this->LinkTrasparenzaNazionale = $LinkTrasparenzaNazionale;
         return $this;
     }
 
@@ -308,33 +187,17 @@ class Aiuto extends ModelBase {
     /**
      * @return mixed
      */
-    public function getDesTipoBeneficiario() {
-        return $this->DesTipoBeneficiario;
+    public function getIdComponenteAiuto()
+    {
+        return $this->IdComponenteAiuto;
     }
 
     /**
-     * @param mixed $DesTipoBeneficiario
-     * @return Aiuto
+     * @param mixed $IdComponenteAiuto
      */
-    public function setDesTipoBeneficiario($DesTipoBeneficiario) {
-        $this->DesTipoBeneficiario = $DesTipoBeneficiario;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRegioneBeneficiario() {
-        return $this->RegioneBeneficiario;
-    }
-
-    /**
-     * @param mixed $RegioneBeneficiario
-     * @return Aiuto
-     */
-    public function setRegioneBeneficiario($RegioneBeneficiario) {
-        $this->RegioneBeneficiario = $RegioneBeneficiario;
-        return $this;
+    public function setIdComponenteAiuto($IdComponenteAiuto)
+    {
+        $this->IdComponenteAiuto = $IdComponenteAiuto;
     }
 
     /**
@@ -388,22 +251,6 @@ class Aiuto extends ModelBase {
     /**
      * @return mixed
      */
-    public function getDesObiettivo() {
-        return $this->DesObiettivo;
-    }
-
-    /**
-     * @param mixed $DesObiettivo
-     * @return Aiuto
-     */
-    public function setDesObiettivo($DesObiettivo) {
-        $this->DesObiettivo = $DesObiettivo;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getDesStrumento() {
         return $this->DesStrumento;
     }
@@ -451,24 +298,16 @@ class Aiuto extends ModelBase {
 
     public function getSchema() {
         return [
-            'CAR' => 'Car',
             'TITOLO_MISURA' => 'TitoloMisura',
-            'DES_TIPO_MISURA' => 'DesTipoMisura',
-            'COD_CE_MISURA' => 'CodCeMisura',
-            'BASE_GIURIDICA_NAZIONALE' => 'BaseGiuridicaNazionale',
-            'IDENTIFICATIVO_UFFICIO' => 'IdentificativoUfficio',
             'SOGGETTO_CONCEDENTE' => 'SoggettoConcedente',
             'COR' => 'Cor',
             'TITOLO_PROGETTO' => 'TitoloProgetto',
-            'DESCRIZIONE_PROGETTO' => 'DescrizioneProgetto',
-            'LINK_TRASPARENZA_NAZIONALE' => 'LinkTrasparenzaNazionale',
             'DATA_CONCESSIONE' => 'DataConcessione',
             'CUP' => 'Cup',
             'ATTO_CONCESSIONE' => 'AttoConcessione',
             'DENOMINAZIONE_BENEFICIARIO' => 'DenominazioneBeneficiario',
             'CODICE_FISCALE_BENEFICIARIO' => 'CodiceFiscaleBeneficiario',
-            'DES_TIPO_BENEFICIARIO' => 'DesTipoBeneficiario',
-            'REGIONE_BENEFICIARIO' => 'RegioneBeneficiario',
+            'ID_COMPONENTE_AIUTO' => 'IdComponenteAiuto',
             'COD_PROCEDIMENTO' => 'CodProcedimento',
             'DES_PROCEDIMENTO' => 'DesProcedimento',
             'DES_REGOLAMENTO' => 'DesRegolamento',

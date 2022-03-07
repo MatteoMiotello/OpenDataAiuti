@@ -4,5 +4,5 @@ namespace Controller;
 
 use Application\Library\TemplateHandler\TemplateHandler;
 
-abstract class ControllerBase {
+abstract class ControllerBase{
 }

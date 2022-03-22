@@ -12,6 +12,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class ResultsController extends ControllerBase
 {
     public function getIndex(...$queryParams): string {
+        session_start();
         $count = $this->dbCount();
         return ( new TemplateHandler( ) )->compileComponent( 'results/results.twig',[
             'count' => $count,

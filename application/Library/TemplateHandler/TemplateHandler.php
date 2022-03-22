@@ -22,11 +22,10 @@ class TemplateHandler {
     }
 
     public function compileComponent( $fileName, $params = [] ) {
-        //session_start();
-        if (isset($_SESSION['id'])) {
+        if (isset($_SESSION['user_id'])) {
             $params = [
                 'user_id' => $_SESSION['user_id'],
-                'user_username' => $_SESSION['username'],
+                'username' => $_SESSION['username'],
                 'user_email' => $_SESSION['email']
             ];
         }

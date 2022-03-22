@@ -332,8 +332,16 @@ class Aiuto extends ModelBase {
 
         $queryInsert = sprintf( 'INSERT INTO `AIUTO` ( %s ) VALUES ( %s )', $fields, $binds );
 
-        $query = $this->Db->prepare( $queryInsert );
+        $result = '';
 
-        $query->execute( $values );
+        try {
+            $query = $this->Db->prepare( $queryInsert );
+
+            $query->execute( $values );
+        } catch (Exception $e) {
+            $result = $e;
+        }
+
+        return $result;
     }
 }

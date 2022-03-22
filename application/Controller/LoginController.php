@@ -17,6 +17,7 @@ class LoginController extends ControllerBase
 
     public function getIndex(...$queryParams): string
     {
+        session_start();
         if (isset($_SESSION['user_id'])) header('location:/home');
 
         return (new TemplateHandler())->compileComponent('login/login.twig');
@@ -60,7 +61,7 @@ class LoginController extends ControllerBase
                 //user found
                 if ($loggedInUser) {
                     $this->createUserSession($loggedInUser);
-                    header('location:/home');
+                    header('location:/');
                     exit;
                 } else {
                     //user not found

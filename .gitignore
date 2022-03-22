@@ -1,4 +1,4 @@
 vendor
 .idea
-application/environment
+application/environment/*
 Public/Upload/

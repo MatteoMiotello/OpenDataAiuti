@@ -29,7 +29,7 @@ class Application {
             return;
         }
 
-        $controller = ucfirst( strtolower( $array[1] ) )  . 'Controller';;
+        $controller = ucfirst( strtolower( $array[1] ) )  . 'Controller';
         $fqn = sprintf( 'Controller\%s', $controller );
 
         if ( !class_exists( $fqn ) ) {
@@ -41,12 +41,13 @@ class Application {
             $method = 'getIndex';
         } else {
             $method = 'get' . ucfirst( strtolower( $array[2] ) );
+            if ( !method_exists( $fqn, $method ) ) {
+                echo ( new NotFoundController() )->getIndex();
+                return;
+            }
         }
 
-        if ( !method_exists( $fqn, $method ) ) {
-            echo ( new NotFoundController() )->getIndex();
-            return;
-        }
+
 
         /** @var ControllerBase $obj */
         $obj = new $fqn();

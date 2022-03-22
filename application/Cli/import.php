@@ -10,10 +10,10 @@ require __DIR__ . '/../../vendor/autoload.php';
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/../environment/.env');
 
-$streamer = XmlStringStreamer::createStringWalkerParser(__DIR__ . '/../../Public/Upload/OpenData_Aiuti_2021_12.xml');
+$streamer = XmlStringStreamer::createStringWalkerParser(__DIR__ . '/../../Public/Upload/OpenData_Aiuti_2021_01.xml');
 
 while ($node = $streamer->getNode()) {
-    $node = str_replace("&#2","",$node);
+    //$node = str_replace("&#2","",$node);
     $simpleXmlNode = simplexml_load_string($node);
 
     $aiuto = (new AiutoConverter())->convert($simpleXmlNode);
@@ -22,3 +22,5 @@ while ($node = $streamer->getNode()) {
         $item->save();
     }
 }
+
+echo 'finito';

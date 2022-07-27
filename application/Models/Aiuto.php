@@ -4,6 +4,7 @@ namespace Models;
 
 use Application\Models\ModelBase;
 use Library\Database\Db;
+use PDO;
 
 class Aiuto extends ModelBase {
     private $Id;
@@ -334,14 +335,24 @@ class Aiuto extends ModelBase {
 
         $result = '';
 
-        try {
+
             $query = $this->Db->prepare( $queryInsert );
 
             $query->execute( $values );
-        } catch (Exception $e) {
-            $result = $e;
-        }
 
-        return $result;
+    }
+
+    public function alreadyIn(){
+        $sql = 'SELECT * FROM AIUTO WHERE ID_COMPONENTE_AIUTO = ?';
+        $stmt = (new Db())->getPDO()->prepare($sql);
+        $stmt->bindParam(1, $this->IdComponenteAiuto, PDO::PARAM_INT);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        if ($count == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

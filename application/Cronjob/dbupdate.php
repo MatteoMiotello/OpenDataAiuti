@@ -5,52 +5,80 @@ use Library\Helpers\UploadedFiles;
 use Prewk\XmlStringStreamer;
 use Symfony\Component\Dotenv\Dotenv;
 
+
+
 require __DIR__ . '/../../vendor/autoload.php';
 
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/../environment/.env');
-$uploadedFiles = new UploadedFiles();
-
-//scandir
-$dir = __DIR__ . '/../Uploads/';
-$files = scandir($dir);
 $filetoupload = '';
-$result = '';
+$uploadedFiles = new UploadedFiles();
+$dotenv = new Dotenv();
 
-//find first file
-foreach ($files as $file){
-    if($file != '.' && $file != '..'){
-        if ( !($uploadedFiles -> alreadyUploaded($file))){
-            $filetoupload = $file;
-            break;
-        }
-    }
-}
+$dir = __DIR__ . '/../Uploads/';
+$exceptions = 0;
 
-//if found upload it
-if($filetoupload != ''){
-    $streamer = XmlStringStreamer::createStringWalkerParser(__DIR__ . '/../Uploads/'.$filetoupload);
+$dotenv -> load(__DIR__ . '/../environment/.env');
 
-    while ($node = $streamer->getNode()) {
-        //$node = str_replace("&#2","",$node);
+$uploadedFiles -> addLog('','run',0);
 
-        $simpleXmlNode = simplexml_load_string($node);
+    try {
+        //scandir
+        $files = scandir($dir);
 
-        $aiuto = (new AiutoConverter())->convert($simpleXmlNode);
-
-        foreach ($aiuto as $item){
-            $res = $item->save();
-
-            //check for exception and add exception to result if it didn't already occur
-            if($res != ''){
-                if(strpos($result,$res) === false){
-                    $result .= $res.' , ';
+        //find first file
+        foreach ($files as $file){
+            if($file != '.' && $file != '..'){
+                if ( !($uploadedFiles -> alreadyUploaded($file))){
+                    $filetoupload = $file;
+                    break;
                 }
             }
         }
 
-    }
-}
+        //if found upload it
+        if($filetoupload != ''){
+            $streamer = XmlStringStreamer::createStringWalkerParser(__DIR__ . '/../Uploads/'.$filetoupload);
 
-//upload cronjob log
-$uploadedFiles ->addLog($filetoupload,$result);
+            $index = $uploadedFiles -> getResumeIndex($filetoupload);
+
+            //arriva all'index
+            if($index != 0){
+                for ($i=0; $i < $index; $i++){
+                    $streamer->getNode();
+                }
+                $uploadedFiles -> addLog($filetoupload,'resume',$index);
+            } else {
+                $uploadedFiles -> addLog($filetoupload,'start',$index);
+            }
+
+            $i=0;
+            while($i <= 25000){ //25001
+                if($node = $streamer->getNode()){
+                    $simpleXmlNode = simplexml_load_string($node);
+
+                    $aiuto = (new AiutoConverter())->convert($simpleXmlNode);
+
+                    foreach ($aiuto as $item){
+                        if(!($item->alreadyIn())){
+                            $item->save();
+                        }
+                    }
+                    $i++;
+                } else {
+                    $uploadedFiles -> addLog($filetoupload,'finish',$index+$i);
+                    echo $filetoupload.' finished';
+                    exit;
+                }
+            }
+            $uploadedFiles -> addLog($filetoupload,'pause',$index+$i);
+            echo $filetoupload.' paused';
+
+        }
+    } catch (Throwable $exception) {
+        if ($exceptions == 0){
+            $uploadedFiles ->addLog($filetoupload,$exception->getMessage(),0);
+            $exceptions++;
+            $index = 0;
+            $filetoupload = '';
+            echo 'fuck';
+        }
+    }

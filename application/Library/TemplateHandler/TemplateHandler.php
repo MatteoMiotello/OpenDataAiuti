@@ -23,10 +23,11 @@ class TemplateHandler {
 
     public function compileComponent( $fileName, $params = [] ) {
         if (isset($_SESSION['user_id'])) {
-            $params = [
+            $params += [
                 'user_id' => $_SESSION['user_id'],
                 'username' => $_SESSION['username'],
-                'user_email' => $_SESSION['email']
+                'user_email' => $_SESSION['email'],
+                'user_level' => $_SESSION['user_level']
             ];
         }
         return $this->Twig->render( $fileName, $params );

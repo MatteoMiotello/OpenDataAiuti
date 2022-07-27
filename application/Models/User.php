@@ -12,6 +12,7 @@ class User extends ModelBase{
     private $username;
     private $email;
     private $password;
+    private $level;
 
     /**
      * @return mixed
@@ -76,6 +77,22 @@ class User extends ModelBase{
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param mixed $level
+     */
+    public function setLevel($level): void
+    {
+        $this->level = $level;
     }
 
     public function login($username, $password)

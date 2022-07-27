@@ -11,6 +11,9 @@
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a href="" class="mr-5 hover:text-gray-900">Guida</a>
             <a href="/upload" class="mr-5 hover:text-gray-900">Upload</a>
+            {% if user_level is defined and user_level == '0'%}
+                <a href="/dashboard" class="mr-5 hover:text-gray-900">Dashboard</a>
+            {% endif %}
         </nav>
         {% if user_id is defined %}
             <a href="/logout/logout"
